@@ -11,7 +11,7 @@ namespace Entity
     {
         public XContext() : base("dbXTANBUL")
         {
-            Database.Connection.ConnectionString = @"server=(localdb)\mssqllocaldb; database=dbXTANBUL;Integrated Security=true";
+           // Database.Connection.ConnectionString = @"server=(localdb)\mssqllocaldb; database=dbXTANBUL;Integrated Security=true";
         }
         public DbSet<Teams> Teams { get; set; }
         public DbSet<Category> Categories { get; set; }

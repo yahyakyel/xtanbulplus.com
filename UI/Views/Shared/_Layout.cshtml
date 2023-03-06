@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>XTANBUL PLUS</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Bluesky template project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="~/Assets/bootstrap4/bootstrap.min.css">
+    <link href="~/Assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="~/Assets/responsive.css">
+    <script src="~/Assets/js/fancybox.js"></script>
+    <link href="~/Assets/fancybox.css" rel="stylesheet" />
+    <link href="~/Assets/layout.css" rel="stylesheet" />
+    <link href="~/Assets/images/site_logo.png" rel="icon">
+
+    <style>
+        .external-map-box {
+            border-radius: 5px;
+            width: 150px;
+            height: 150px;
+        }
+    </style>
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+</head>
+<body>
+    <div class="parallax-mirror" style="visibility: hidden; z-index: -100; position: fixed; top: 0px; left: 0px; overflow: hidden; height: 400px; width: 1903px;"><img class="parallax-slider" src="~/Assets/images/newsletter.jpg" style="position: absolute; height: 594px; width: 1903px; max-width: none;"></div>
+    <div class="super_container">
+        <header class="header scrolled">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="header_content d-flex flex-row align-items-center justify-content-start">
+                            <div class="logo">
+                                <a href="/Home/Index"><img src="~/Assets/images/logo.png" alt=""></a>
+                            </div>
+                            <nav class="main_nav">
+                                <ul>
+                                    <li class="active"><a href="/Home/Index">Ana Sayfa</a></li>
+                                    <li><a href="/Home/RealEstates">Tüm İlanlar</a></li>
+                                    <li><a href="/Home/About">Hakkımızda</a></li>
+                                    <li><a href="/Home/Teams">Ekibimiz</a></li>
+                                    <li><a href="/Home/Contact">İletişim</a></li>
+                                </ul>
+                            </nav>
+                            @*<div class="phone_num ml-auto">
+                                    <div class="phone_num_inner">
+                                        <img src="~/Assets/images/phone.png" alt=""><span>652-345 3222 11</span>
+                                    </div>
+                                </div>*@
+                            <div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="menu trans_500">
+            <div class="menu_content d-flex flex-column align-items-center justify-content-center text-center">
+                <div class="menu_close_container"><div class="menu_close"></div></div>
+                <div class="logo menu_logo">
+                    <a href="/Home/Index">
+                        <div class="logo_container d-flex flex-row align-items-start justify-content-start">
+                            <div class="logo_image"><div><img src="~/Assets/images/logo.png" alt=""></div></div>
+                        </div>
+                    </a>
+                </div>
+                <ul>
+                    <li><a href="/Home/Index" style=" color: antiquewhite; ">Ana Sayfa</a></li>
+                    <li><a href="/Home/RealEstates" style=" color: antiquewhite; ">Tüm İlanlar</a></li>
+                    <li><a href="/Home/About" style=" color: antiquewhite; ">Hakkımızda</a></li>
+                    <li><a href="/Home/Teams" style=" color: antiquewhite; ">Ekibimiz</a></li>
+                    <li><a href="/Home/Contact" style=" color: antiquewhite; ">İletişim</a></li>
+                </ul>
+            </div>
+        </div>
+
+        @RenderBody()
+
+        <footer class="footer">
+            <div class="footer_main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 footer_col">
+                            <div class="footer_logo"><a href="#"><img style="max-width: 100%;" src="~/Assets/images/logo_large.png" alt=""></a></div>
+
+                            <div class="footer_about">
+                                <div class="footer_nav" style=" margin-left: 50px; ">
+                                    <ul style=" list-style: circle; ">
+                                        <li style=" display: list-item; "><a href="/Home/Index">Anasayfa</a></li>
+                                        <li style=" display: list-item; "><a href="/Home/RealEstates">Tüm İlanlar</a></li>
+                                        <li style=" display: list-item; "><a href="/Home/About">Hakkımızda</a></li>
+                                        <li style=" display: list-item; "><a href="/Home/Teams">Ekibimiz</a></li>
+                                        <li style=" display: list-item; "><a href="/Home/Contact">İletişim</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 footer_col row">
+
+                            <div class="col-5">
+                                <h4>Adres</h4>
+                                <p>Mimar Sinan, Kaya İş Merkezi, Çekmeköy Kavşağı, 16/6 Çekmeköy/İstanbul</p>
+                            </div>
+                            <div class="col-3" style="border-radius:4px">
+                                <iframe class="external-map-box " src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1789.6343441247072!2d29.173115943905223!3d41.029758020491805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caceedc1e89fb7%3A0xbaa1d247c997e948!2zS2F5YSDEsMWfIE1lcmtlemk!5e0!3m2!1str!2str!4v1676722438926!5m2!1str!2str" width="150" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script src="~/Assets/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Assets/bootstrap4/popper.js"></script>
+    <script src="~/Assets/bootstrap4/bootstrap.min.js"></script>
+    <script src="~/Assets/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+    <script src="~/Assets/plugins/easing/easing.js"></script>
+    <script src="~/Assets/plugins/parallax-js-master/parallax.min.js"></script>
+    <script src="~/Assets/js/custom.js"></script>
+
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-23581568-13');
+    </script>
+</body>
+</html>

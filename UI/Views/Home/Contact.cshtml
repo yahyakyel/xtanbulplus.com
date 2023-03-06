@@ -1,0 +1,182 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .external-map-box {
+        border-radius: 5px;
+        width: 100%;
+        height: 200px;
+    }
+    .contact {
+        width: 100%;
+        background: #FFFFFF;
+        padding-top: 119px;
+        padding-bottom: 105px;
+    }
+
+        .contact .section_title {
+            font-weight: 700;
+        }
+
+    .contact_info_text {
+        margin-top: 42px;
+    }
+
+    .contact_info_content {
+        margin-top: 50px;
+        padding-right: 170px;
+    }
+
+    .contact_info_list li {
+        font-size: 14px;
+        font-weight: 500;
+        color: #828282;
+    }
+
+        .contact_info_list li:not(:last-child) {
+            margin-bottom: 23px;
+        }
+
+        .contact_info_list li > div:first-child {
+            color: #3f6fce;
+        }
+
+    .contact_form_container {
+    }
+
+    .contact_form {
+        display: block;
+        position: relative;
+        width: 100%;
+    }
+
+        .contact_form > div:not(:last-child) {
+            margin-bottom: 17px;
+        }
+
+    .contact_input {
+        width: 100%;
+        height: 48px;
+        background: #f1f6f9;
+        border-radius: 24px;
+        padding-left: 38px;
+        border: none;
+        outline: none;
+    }
+
+    .contact_textarea {
+        height: 153px;
+        padding-top: 17px;
+    }
+
+    .contact_input::-webkit-input-placeholder {
+        font-size: 12px !important;
+        font-weight: 500 !important;
+        font-style: italic;
+        color: #838383 !important;
+    }
+
+    .contact_input:-moz-placeholder {
+        font-size: 12px !important;
+        font-weight: 500 !important;
+        font-style: italic;
+        color: #838383 !important;
+    }
+
+    .contact_input::-moz-placeholder {
+        font-size: 12px !important;
+        font-weight: 500 !important;
+        font-style: italic;
+        color: #838383 !important;
+    }
+
+    .contact_input:-ms-input-placeholder {
+        font-size: 12px !important;
+        font-weight: 500 !important;
+        font-style: italic;
+        color: #838383 !important;
+    }
+
+    .contact_input::input-placeholder {
+        font-size: 12px !important;
+        font-weight: 500 !important;
+        font-style: italic;
+        color: #838383 !important;
+    }
+
+    .contact_button {
+        border: none;
+        outline: none;
+        color: #FFFFFF;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 700;
+        color: #FFFFFF;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="realtors" style="background-color:white;">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col" style=" text-align: -webkit-center; ">
+                <div class="section_title">İletişim</div>
+            </div>
+        </div>
+        <div class="row realtors_row">
+            <div class="col-lg-6">
+                <div class="contact_info">
+                    <div class="section_title">İletişimde Kalınız...</div>
+                    <div class="contact_info_content">
+                        <ul class="contact_info_list">
+                            <li>
+                                <div>Telefon:</div>
+                                <div>
+                                    <a href="tel:+05451243737" class="phone pt-1 pb-1 pr-2" style="  margin-right: auto; color: #fff; text-align: center; ">
+                                        <i class="fa fa-phone" style="width: 30px; position: relative; color: #c7a86e;"></i>
+                                        <span class="text-dark">05451243737</span>
+
+                                    </a>
+                                </div>
+                            </li>
+                            <li>
+                                <div>Adres:</div>
+                                <div>
+                                    Mimar Sinan, Kaya İş Merkezi, Çekmeköy Kavşağı, 16/6 Çekmeköy/İstanbul
+                                </div>
+                            </li>
+                            <li>
+                                <div>Email:</div>
+                                <div>info@xtanbulplus.com</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 mt-3 p-0">
+                        <iframe class="external-map-box " src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1789.6343441247072!2d29.173115943905223!3d41.029758020491805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caceedc1e89fb7%3A0xbaa1d247c997e948!2zS2F5YSDEsMWfIE1lcmtlemk!5e0!3m2!1str!2str!4v1676722438926!5m2!1str!2str" height="150" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="contact_form_container">
+                    <form action="#" class="contact_form" id="contact_form">
+                        <div class="row">
+
+                            <div class="col-lg-6 contact_name_col">
+                                <input type="text" class="contact_input" placeholder="Ad" required="required">
+                            </div>
+
+                            <div class="col-lg-6">
+                                <input type="email" class="contact_input" placeholder="E-mail" required="required">
+                            </div>
+                        </div>
+                        <div><input type="text" class="contact_input" placeholder="Konu"></div>
+                        <div><textarea class="contact_textarea contact_input" placeholder="Mesajınız" required="required"></textarea></div>
+                        <button class="contact_button button">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

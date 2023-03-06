@@ -1,0 +1,689 @@
+﻿@using Entity
+@model RealEstates
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    html * {
+        box-sizing: border-box;
+    }
+
+    p {
+        margin: 0;
+    }
+
+    .upload__inputfile {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .upload__btn {
+        display: inline-block;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+        min-width: 116px;
+        padding: 5px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        border: 2px solid;
+        background-color: #4045ba;
+        border-color: #4045ba;
+        border-radius: 10px;
+        line-height: 26px;
+        font-size: 14px;
+    }
+
+        .upload__btn:hover {
+            background-color: unset;
+            color: #4045ba;
+            transition: all 0.3s ease;
+        }
+
+    .upload__btn-box {
+        margin-bottom: 10px;
+    }
+
+    .upload__img-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -10px;
+    }
+
+    .upload__img-box {
+        width: 200px;
+        padding: 0 10px;
+        margin-bottom: 12px;
+    }
+
+    .upload__img-close {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        text-align: center;
+        line-height: 24px;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+        .upload__img-close:after {
+            content: "✖";
+            font-size: 14px;
+            color: white;
+        }
+
+    .img-bg {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        position: relative;
+        padding-bottom: 100%;
+    }
+</style>
+<div class="" id="kt_wrapper">
+    <!--begin::Toolbar-->
+    <div class="toolbar py-2" id="kt_toolbar">
+        <!--begin::Container-->
+        <div id="kt_toolbar_container" class="container-fluid d-flex align-items-center">
+            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                <!--begin::Title-->
+                <h1 class="d-flex align-items-center text-dark fw-bolder my-1 fs-3">İlan Düzenle</h1>
+                <!--end::Title-->
+            </div>
+            <!--begin::Page title-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Toolbar-->
+    <!--begin::Content-->
+    <div class="content d-flex flex-column flex-column-fluid" id="EditAnnouncementPage">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <!--begin::Basic info-->
+            <div class="card mb-5 mb-xl-10">
+                <!--begin::Content-->
+                <div id="AddAnnouncementPage" class="collapse show">
+                    <!--begin::Form-->
+                    <form id="AddAnnouncementform" class="form fv-plugins-bootstrap5 fv-plugins-framework" novalidate="novalidate">
+                        <!--begin::Card body-->
+                        <div class="card-body border-top p-9">
+                            <input type="hidden" id="ID" name="ID" value="" />
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Fotoğraf</label>
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <div class="upload__box">
+                                        <div class="upload__btn-box">
+                                            <label class="upload__btn">
+                                                <p>Fotoğraf Yükle</p>
+                                                <input type="file" multiple="" data-max_length="20" class="upload__inputfile">
+                                            </label>
+                                        </div>
+                                        <div class="upload__img-wrap"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="result"></div>
+
+                            <!--end::Input group-->                      
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Başlık</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="text" id="Title" name="title" class="form-control form-control-lg form-control-solid">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Fiyat</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="number" id="Price" name="Price" class="form-control form-control-lg form-control-solid">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                    <span class="required">Şehir</span>
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <select id="Cities" class="custom-select form-control form-control kt-selectpicker fw-bold" name="Cities" data-live-search="true" tabindex="-98">
+                                    </select>
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                    <span class="required">İlçe</span>
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <select id="District" class="custom-select form-control form-control kt-selectpicker fw-bold" name="District" data-live-search="true" tabindex="-98">
+                                    </select>
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                    <span class="required">Mahalle</span>
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <select id="NeighbourhoodID" class="custom-select form-control form-control kt-selectpicker fw-bold" name="Neighbourhood" data-live-search="true" tabindex="-98">
+                                    </select>
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label fw-bold fs-6">m²(brüt)</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="number" id="AreaBrüt" name="brüt" class="form-control form-control-lg form-control-solid">
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label fw-bold fs-6">m²(Net)</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <input type="number" id="AreaGross" name="gross" class="form-control form-control-lg form-control-solid">
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Oda Sayısı</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="number" id="RoomCount" name="RoomCount" class="form-control form-control-lg form-control-solid">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Salon Sayısı</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="number" id="SaloonCount" name="SaloonCount" class="form-control form-control-lg form-control-solid">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Bina Yaşı</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="number" id="BuildingAge" name="BuildingAge" class="form-control form-control-lg form-control-solid">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Bulunduğu Kat</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="number" id="FloorLocation" name="FloorLocation" class="form-control form-control-lg form-control-solid">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Kat Sayısı</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="number" id="FloorCount" name="FloorCount" class="form-control form-control-lg form-control-solid">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Isıtma</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="text" id="Heating" name="Heating" class="form-control form-control-lg form-control-solid">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Banyo Sayısı</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="number" id="BathroomsCount" name="BathroomsCount" class="form-control form-control-lg form-control-solid">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Balkon</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input class="form-check-input bg-success" checked type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="VAR">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Var
+                                    </label>
+                                    <input class="form-check-input bg-danger" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="YOK">
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Yok
+                                    </label>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Eşyalı</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input class="form-check-input bg-success" checked type="radio" name="flexRadioDefault2" id="flexRadioDefault3" value="EVET">
+                                    <label class="form-check-label" for="flexRadioDefault3">
+                                        Evet
+                                    </label>
+                                    <input class="form-check-input bg-danger" type="radio" name="flexRadioDefault2" id="flexRadioDefault4" value="HAYIR">
+                                    <label class="form-check-label" for="flexRadioDefault4">
+                                        Hayır
+                                    </label>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Kullanım Durumu</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="text" id="UsingStatus" name="UsingStatus" class="form-control form-control-lg form-control-solid">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Site İçerisinde</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input class="form-check-input bg-success" onclick="Open()" checked type="radio" name="flexRadioDefault3" id="flexRadioDefault5" value="EVET">
+                                    <label class="form-check-label"  for="flexRadioDefault5">
+                                        Evet
+                                    </label>
+                                    <input class="form-check-input bg-danger" onclick="Close()" type="radio" name="flexRadioDefault3" id="flexRadioDefault6" value="HAYIR">
+                                    <label class="form-check-label"  for="flexRadioDefault6">
+                                        Hayır
+                                    </label>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6" id="SiteNameDiv">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Site Adı</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="text" id="SiteName" name="SiteName" class="form-control form-control-lg form-control-solid">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Kuzey</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input class="form-check-input bg-success" checked type="radio" name="flexRadioDefault4" id="North" value="VAR">
+                                    <label class="form-check-label" for="North">
+                                        Var
+                                    </label>
+                                    <input class="form-check-input bg-danger" type="radio" name="flexRadioDefault4" id="North2" value="YOK">
+                                    <label class="form-check-label" for="North2">
+                                        Yok
+                                    </label>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Güney</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input class="form-check-input bg-success" checked type="radio" name="flexRadioDefault5" id="South" value="VAR">
+                                    <label class="form-check-label" for="South">
+                                        Var
+                                    </label>
+                                    <input class="form-check-input bg-danger" type="radio" name="flexRadioDefault5" id="South2" value="YOK">
+                                    <label class="form-check-label" for="South2">
+                                        Yok
+                                    </label>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Doğu</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input class="form-check-input bg-success" checked type="radio" name="flexRadioDefault6" id="East" value="VAR">
+                                    <label class="form-check-label" for="East">
+                                        Var
+                                    </label>
+                                    <input class="form-check-input bg-danger" type="radio" name="flexRadioDefault6" id="East2" value="YOK">
+                                    <label class="form-check-label" for="East2">
+                                        Yok
+                                    </label>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Batı</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input class="form-check-input bg-success" checked type="radio" name="flexRadioDefault7" id="West" value="VAR">
+                                    <label class="form-check-label" for="West">
+                                        Var
+                                    </label>
+                                    <input class="form-check-input bg-danger" type="radio" name="flexRadioDefault7" id="West2" value="YOK">
+                                    <label class="form-check-label" for="West2">
+                                        Yok
+                                    </label>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Konum Link</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <input type="text" id="LocationIFrameLink" name="LocationIFrameLink" class="form-control form-control-lg form-control-solid">
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label required fw-bold fs-6">Açıklama</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row fv-plugins-icon-container">
+                                    <textarea class="form-control form-control-lg form-control-solid" id="Description" name="Description" rows="1" data-kt-element="input"></textarea>
+                                    <div class="fv-plugins-message-container invalid-feedback"></div>
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input group-->
+                        </div>
+                        <!--end::Card body-->
+                        <!--begin::Actions-->
+                        <div class="card-footer d-flex justify-content-end py-6 px-9">
+                            <div onclick="Back()" class="btn btn-light btn-active-light-primary me-2">Vazgeç</div>
+                            <div class="btn btn-primary" onclick="UpdateAnnouncement(@Model.ID)">Kaydet</div>
+                        </div>
+                        <!--end::Actions-->
+                        <input type="hidden"><div></div>
+                    </form>
+                    <!--end::Form-->
+                </div>
+                <!--end::Content-->
+            </div>
+
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Content-->
+</div>
+<script src="~/assets/js/scripts.bundle.js"></script>
+<script src="~/assets/js/custom/jquery.min.js"></script>
+<script src="~/assets/js/AnnouncementScript.js"></script>
+<script src="~/assets/vendors/general/jquery/dist/jquery.js" type="text/javascript"></script>
+
+<script>
+    $('#Description').summernote({
+        placeholder: 'Soru Metni',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+</script>
+<script>
+    var imgArrayForRealEstate = [];
+    var imgArrayForRealEstateArr = [];
+
+    $(document).ready(function () {
+        EditAnnouncement(@Model.ID);
+        EditAnnouncementImage(@Model.ID);
+    });
+</script>
+<script>
+    function Back() {
+        history.back();
+    }
+    function Close() {
+        $('#SiteNameDiv').hide();
+    }
+    function Open() {
+        $('#SiteNameDiv').show();
+    }
+</script>
+<script>
+    function EditAnnouncementImage(id) {
+        $.ajax({
+            type: "POST",
+            url: '/Announcement/EditAnnouncementImage?id=' + id,
+            success: function (data) {
+                debugger
+                for (var i = 0; i < data['data'].length; i++) {
+                    var urlX = "http://admin.xtanbulplus.com"+  data['data'][i]['Photos'];
+                    toDataURL(urlX, data['data'][i]['Photos'],
+                        function (dataUrl) {
+                            console.log('RESULT:', dataUrl)
+                        }
+                    );
+                }
+            },
+            error: function (request, status, error) {
+                swal.fire("Hata!", "Bir sorun ile karşılaşıldı!", "error");
+            }
+        });
+    };
+</script>
+<script>
+    function toDataURL(src, name, callback, outputFormat) {
+        var imgWrap = "";
+        imgWrap = $(".upload__img-wrap");
+        debugger
+        let image = new Image();
+        image.crossOrigin = 'Anonymous';
+
+        image.src = src;
+        if (image.complete || image.complete === undefined) {
+            image.src = "data:image/gif;base64, R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+            image.src = src;
+            imgArrayForRealEstate.push(image);
+        }
+        var html =
+            "<div class='upload__img-box' id='MultiImage'><div style='background-image: url(" +
+            image.src +
+            ")' data-number='" + 20 +
+            "' data-file='" +
+            name +
+            "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+        imgWrap.append(html);
+        imgArrayForRealEstateArr.push(name);
+    }
+</script>
+<script>
+
+    jQuery(document).ready(function () {
+        ImgUpload();
+    });
+    function ImgUpload() {
+        var imgWrap = "";
+
+        $(".upload__inputfile").each(function () {
+            $(this).on("change", function (e) {
+                imgWrap = $(this).closest(".upload__box").find(".upload__img-wrap");
+                var maxLength = $(this).attr("data-max_length");
+
+                var files = e.target.files;
+                var filesArr = Array.prototype.slice.call(files);
+                var iterator = 0;
+                filesArr.forEach(function (f, index) {
+                    debugger
+                    if (!f.type.match("image.*")) {
+                        return;
+                    }
+
+                    if (imgArrayForRealEstate.length > maxLength) {
+                        return false;
+                    } else {
+                        var len = 0;
+                        for (var i = 0; i < imgArrayForRealEstate.length; i++) {
+                            if (imgArrayForRealEstate[i] !== undefined) {
+                                len++;
+                            }
+                        }
+                        if (len > maxLength) {
+                            return false;
+                        } else {
+                            imgArrayForRealEstate.push(f);
+
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                var html =
+                                    "<div class='upload__img-box' id='MultiImage'><div style='background-image: url(" +
+                                    e.target.result +
+                                    ")' data-number='" +                               
+                                    f.name +
+                                    "' class='img-bg'><div class='upload__img-close'></div></div></div>";
+                                imgWrap.append(html);
+                                iterator++;
+                            };
+                            reader.readAsDataURL(f);
+                        }
+                    }
+                });
+            });
+        });
+        $("body").on("click", ".upload__img-close", function (e) {
+            debugger
+            var file = $(this).parent().data("file");
+            for (var i = 0; i < imgArrayForRealEstate.length; i++) {
+                if (imgArrayForRealEstate[i].name === file) {
+                    imgArrayForRealEstate.splice(i, 1);
+                    break;
+                }
+            }
+            for (var i = 0; i < imgArrayForRealEstateArr.length; i++) {
+                if (imgArrayForRealEstateArr[i] === file) {
+                    imgArrayForRealEstateArr.splice(i, 1);
+                    break;
+                }
+            }
+            $(this).parent().parent().remove();
+        });
+    };
+</script>

@@ -1,0 +1,248 @@
+﻿@using Entity
+@model RealEstates
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    strong {
+        display: block;
+    }
+
+    iframe {
+        width: 100%;
+    }
+
+    .classified-attributes {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: box;
+        display: flex;
+        -webkit-box-lines: multiple;
+        -moz-box-lines: multiple;
+        -o-box-lines: multiple;
+        -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-bottom: -20px;
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="~/Assets/js/fancybox.js"></script>
+<link href="~/Assets/fancybox.css" rel="stylesheet" />
+<style>
+</style>
+<div class="recent">
+    <div class="container">
+        <h3 class="mt-3 mb-3" style="color: #1f2337;">@Model.Title</h3>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="widget-title" style=" background: #3f475f; display: -webkit-box; display: -moz-box; display: -webkit-flex; display: -ms-flexbox; display: box; display: flex; ">
+                    <h4 style=" background: #2f3547; color: #fdb; position: relative; max-width: 200px; font-size: 16px; font-weight: 600; line-height: 21px; padding: 10px 15px; white-space: nowrap; margin: 0; ">Genel Bakış</h4>
+                    <span class="light show-desktop" id="location" style="font-size: 14px; font-weight: 500; color: #fff; margin-left: auto; font-size: 16px; font-weight: 600; line-height: 21px; padding: 10px 15px; white-space: nowrap; display: block; ">Bursa / Nilüfer / Fethiye Mah.</span>
+                </div>
+                <div class="classified-box" style="background: #fff; border: 1px solid #d7d7d7; padding: 20px; overflow: hidden; color: #454545; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; ">
+                    <div class="row">
+                        <div class="col-md-2 col-6">
+                            <strong style=" display: block; ">
+                                Kategori
+                            </strong>
+                            <span>
+                                Emlak
+                            </span>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <strong style=" display: block; ">
+                                m² (Brüt)
+                            </strong>
+                            <span>
+                                @Model.AreaBrüt
+                            </span>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <strong style=" display: block; ">
+                                m² (Net)
+                            </strong>
+                            <span>
+                                @Model.AreaGross
+                            </span>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <strong style=" display: block; ">
+                                Oda Sayısı
+                            </strong>
+                            <span>
+                                @Model.RoomCount + @Model.SaloonCount
+                            </span>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <strong style=" display: block; ">
+                                Balkon
+                            </strong>
+                            <span>
+                                @if (@Model.Balcony)
+                                {
+                                    <span>Var</span>
+                                }
+                                else
+                                {
+                                    <span>Yok</span>
+                                }
+                            </span>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <strong style=" display: block; ">
+                                Kat
+                            </strong>
+                            <span>
+                                @Model.FloorLocation .Kat
+                            </span>
+                        </div>
+                    </div>
+                    <ul class="classified-attributes mt-4">
+                        <!-- Classified Attributes -->
+                        <li style="width: 33%; margin-bottom: 20px; color: #454545; font-size: 14px; font-weight: 500;">
+                            <strong>
+                                Binanın Yaşı
+                            </strong>
+
+                            <span class="">
+                                @Model.BuildingAge Yıl
+                            </span>
+                        </li>
+                        <li style="width: 33%; margin-bottom: 20px; color: #454545; font-size: 14px; font-weight: 500;">
+                            <strong>
+                                Bina Kat Sayısı
+                            </strong>
+
+                            <span class="">
+                                @Model.FloorCount Kat
+                            </span>
+                        </li>
+                        <li style="width: 33%; margin-bottom: 20px; color: #454545; font-size: 14px; font-weight: 500;">
+                            <strong>
+                                Kimden
+                            </strong>
+
+                            <span class="">
+                                Emlak Ofisinden
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="widget-title mt-3" style=" background: #3f475f; display: -webkit-box; display: -moz-box; display: -webkit-flex; display: -ms-flexbox; display: box; display: flex; ">
+                    <h4 style=" background: #2f3547; color: #fdb; position: relative; max-width: 200px; font-size: 16px; font-weight: 600; line-height: 21px; padding: 10px 15px; white-space: nowrap; margin: 0; ">Açıklama</h4>
+                </div>
+                <div class="classified-box" style="background: #fff; border: 1px solid #d7d7d7; padding: 20px; overflow: hidden; color: #454545; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; ">
+                    @Model.Description
+                </div>
+                <div class="widget-title mt-3" style=" background: #3f475f; display: -webkit-box; display: -moz-box; display: -webkit-flex; display: -ms-flexbox; display: box; display: flex; ">
+                    <h4 style=" background: #2f3547; color: #fdb; position: relative; max-width: 200px; font-size: 16px; font-weight: 600; line-height: 21px; padding: 10px 15px; white-space: nowrap; margin: 0; ">Özellikler</h4>
+                </div>
+                <div class="classified-box" style="background: #fff; border: 1px solid #d7d7d7; padding: 20px; overflow: hidden; color: #454545; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; ">
+
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="widget-title" style=" background: #3f475f; display: -webkit-box; display: -moz-box; display: -webkit-flex; display: -ms-flexbox; display: box; display: flex; ">
+                    <h4 style=" background: #2f3547; color: #fdb; position: relative; max-width: 200px; font-size: 16px; font-weight: 600; line-height: 21px; padding: 10px 15px; white-space: nowrap; margin: 0; " id="TeamMemberName"></h4>
+                    <span class="light show-desktop" style="font-size: 14px; font-weight: 500; color: #fff; margin-left: auto; font-size: 16px; font-weight: 600; line-height: 21px; padding: 10px 15px; white-space: nowrap; display: block; ">Danışman</span>
+                </div>
+                <div class="classified-box" style="background: #fff; border: 1px solid #d7d7d7; padding: 20px; overflow: hidden; color: #454545; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; ">
+                    <div class="realtor_image">
+                        <figcaption id="TeamMemberDes" style=" position: absolute; bottom: 10px; left: 10px; right: 10px; display: -webkit-box; display: -moz-box; display: -webkit-flex; display: -ms-flexbox; display: box; display: flex; -webkit-box-pack: end; -moz-box-pack: end; -o-box-pack: end; -ms-flex-pack: end; -webkit-justify-content: flex-end; justify-content: flex-end;">
+                        </figcaption>
+                        <img id="TeamMemberImage" src="" alt="" style=" width: 100%; ">
+                    </div>
+                </div>
+                <div class="widget-title mt-3" style=" background: #3f475f; display: -webkit-box; display: -moz-box; display: -webkit-flex; display: -ms-flexbox; display: box; display: flex; ">
+                    <h4 style=" background: #2f3547; color: #fdb; position: relative; max-width: 200px; font-size: 16px; font-weight: 600; line-height: 21px; padding: 10px 15px; white-space: nowrap; margin: 0; ">Konum</h4>
+                </div>
+                <div class="classified-box" style="background: #fff; border: 1px solid #d7d7d7; padding: 20px; overflow: hidden; color: #454545; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; ">
+                    <iframe id="FrameBox" src="" width="600" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="widget-title mt-3" style=" background: #3f475f; display: -webkit-box; display: -moz-box; display: -webkit-flex; display: -ms-flexbox; display: box; display: flex; ">
+            <h4 style=" background: #2f3547; color: #fdb; position: relative; max-width: 200px; font-size: 16px; font-weight: 600; line-height: 21px; padding: 10px 15px; white-space: nowrap; margin: 0; ">Görseller</h4>
+        </div>
+        <div class="classified-box" style="background: #fff; border: 1px solid #d7d7d7; padding: 20px; overflow: hidden; color: #454545; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; ">
+            <div class="row" id="RealEstateList">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+
+</script>
+
+<script>
+    $(document).ready(
+        RealEstateList(@Model.ID)
+    );
+
+    function RealEstateList(Id) {
+        var lnq =`@Model.LocationIFrameLink`;
+        const myArray = lnq.split(`;`);
+        debugger
+        $('#FrameBox').attr('src',myArray[2]);
+        debugger
+        var EstateID= Id;
+        var formdata = new FormData();
+        formdata.append('EstateID', EstateID);
+        $.ajax({
+            type: "POST",
+            url: '/Home/GetRealEstateDetails',
+            data: formdata,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                debugger
+                $('#location').text(data['CitiesID'][0]['CityName'] + " / " + data['DistrictID'][0]['DistrictName'] + " / " + data['NeighbourhoodID'][0]['NeighbourhoodName']);
+                $('#TeamMemberImage').attr('src', "http://admin.xtanbulplus.com"+data['TeamMember'][0]['Image']);
+                $('#TeamMemberName').append(data['TeamMember'][0]['FirstName'] + " " + data['TeamMember'][0]['LastName']);
+                var ListM = ` <a href="tel:+9` + data['TeamMember'][0]['PhoneNumber'] +`" class="phone pt-1 pb-1 pr-2" style=" background: #1f2337; margin-right: auto; color: #fff; text-align: center; ">
+                                <i class="fa fa-phone" style="width: 30px; position: relative; color: #c7a86e;"></i>
+                                <span>`+ data['TeamMember'][0]['PhoneNumber']+`</span>
+                            </a>`;
+                $('#TeamMemberDes').empty();
+                $('#TeamMemberDes').append(ListM);
+                var List = '';
+                for (var i = 0; i < data['data'].length; i++) {
+                    List += `<div class="col-lg-3 col-md-6 mb-5">
+                                <div class="card border-3 border-dark text-center text-white" style="height: 260px;place-content: center;">
+                                    <a href="`+ data['data'][i]['Image']+`" data-fancybox="group" data-caption="">
+                                        <img src="`+"http://admin.xtanbulplus.com" + data['data'][i]['Image'] +`" style=" width: auto;height: auto;max-width: 250px;max-height: 255px;" />
+                                    </a>
+                                </div>
+                             </div>`;
+                }
+                $('#RealEstateList').empty();
+                $('#RealEstateList').append(List);
+            },
+            error: function (request, status, error) {
+                swal.fire("Hata!", "Bir sorun ile karşılaşıldı!", "error");
+            }
+        });
+    };
+    $('[data-fancybox]').fancybox({
+        // Options will go here
+        buttons: [
+            'close'
+        ],
+        wheel: false,
+        transitionEffect: "slide",
+        // thumbs          : false,
+        // hash            : false,
+        loop: true,
+        // keyboard        : true,
+        toolbar: false,
+        // animationEffect : false,
+        // arrows          : true,
+        clickContent: false
+    });
+</script>

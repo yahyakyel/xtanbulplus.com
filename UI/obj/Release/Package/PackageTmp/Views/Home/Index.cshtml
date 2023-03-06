@@ -1,0 +1,235 @@
+﻿@using Entity
+@{
+    ViewBag.Title = "Contact";
+    List<ClassLibrary1.Models.HomeEstate> estae = Query.GetAllRealEstate();
+    List<ClassLibrary1.Models.Teams> teams = Query.GetAllTeamMember();
+
+}
+
+
+<div class="realtors">
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col" style=" text-align: -webkit-center; ">
+                <div class="section_title">Hizmetlerimiz</div>
+                <div class="section_subtitle">Sizin için hizmet veriyoruz...</div>
+            </div>
+        </div>
+        <div class="row realtors_row">
+            <div class="col-lg-4 col-md-6">
+                <div class="realtor_outer">
+                    <div class="realtor">
+                        <div class="realtor_image"><img src="~/Assets/images/alımsatımkira.jpg" alt=""></div>
+                        <div class="realtor_body">
+                            <div class="realtor_title">
+                                Alım, Satım ve Kiralama
+                            </div>
+                            <div class="realtor_subtitle">
+                                Gayrimenkul alım, satım ve kiralama işlemleriniz için bir telefon kadar uzağınızdayız.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="realtor_outer">
+                    <div class="realtor">
+                        <div class="realtor_image"><img src="~/Assets/images/gayrimenkul-yonetimi.jpg" alt=""></div>
+                        <div class="realtor_body">
+                            <div class="realtor_title">
+                                Gayrimenkul Yönetimi
+                            </div>
+                            <div class="realtor_subtitle">
+                                Aidat, abonelik, tamir, bakım ve onarım gibi birçok işleminizde yardıma hazırız.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="realtor_outer">
+                    <div class="realtor">
+                        <div class="realtor_image"><img src="~/Assets/images/arabulucu.jpg" alt=""></div>
+                        <div class="realtor_body">
+                            <div class="realtor_title">
+                                Yetkili Kurumlarla Aracılık
+                            </div>
+                            <div class="realtor_subtitle">
+                                Yetkili kurumlarda bilgi, belge temini ve aracılık gibi tüm işlemlerde destek sunuyoruz.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="realtor_outer">
+                    <div class="realtor">
+                        <div class="realtor_image"><img src="~/Assets/images/raic.jpg" alt=""></div>
+                        <div class="realtor_body">
+                            <div class="realtor_title">
+                                Rayiç Bedel Araştırması
+                            </div>
+                            <div class="realtor_subtitle">
+                                Gayrimenkulünüzü detaylıca inceleyip piyasa değerini tespit ederek tarafınıza sunuyoruz.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="realtor_outer">
+                    <div class="realtor">
+                        <div class="realtor_image"><img src="~/Assets/images/vergihesap.jpg" alt=""></div>
+                        <div class="realtor_body">
+                            <div class="realtor_title">
+                                Vergi Değeri Hesaplaması
+                            </div>
+                            <div class="realtor_subtitle">
+                                Tapu harcı, emlak vergisi, değer artış vergisi gibi birçok konuda hizmet veriyoruz.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="realtor_outer">
+                    <div class="realtor">
+                        <div class="realtor_image"><img src="~/Assets/images/hukukk.jpg" alt=""></div>
+                        <div class="realtor_body">
+                            <div class="realtor_title">
+                                Hukuki Destek
+                            </div>
+                            <div class="realtor_subtitle">
+                                Gayrimenkul alanında ihtiyacınız olabilecek hukuki desteği sağlıyoruz.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="recent">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title">
+                    Portföyümüz
+                </div>
+                <div class="section_subtitle">Xtanbul Plus olarak siz müşterilerimizin tüm talep ve ihtiyaçlarını, profesyonel bir anlayış ile karşılamaktayız.</div>
+            </div>
+        </div>
+        <div class="row recent_row">
+            <div class="col">
+                <div class="row" style=" justify-content: center; ">
+                    @foreach (var item in estae)
+                    {
+                        <div class="owl-item col-md-4" style="width: 390px;">
+                            <div class="owl-item">
+                                <div class="recent_item">
+                                    <div class="recent_item_inner">
+                                        <div class="recent_item_image" style=" text-align: -webkit-center; background-color: aliceblue;">
+                                            <img src="http://admin.xtanbulplus.com/@item.Image" alt="" style="height: 270px; width: auto;">
+
+                                        </div>
+                                        <div class="recent_item_body text-center">
+                                            <div class="recent_item_location">@item.LocationC/@item.LocationD</div>
+                                            <div class="recent_item_title" style=" min-height: 100px; "><a href="/Home/RealEstateDetails?Id=@item.ID">@item.Title</a></div>
+                                            <div class="recent_item_price">@item.Price.ToString("000,000") ₺</div>
+                                        </div>
+                                        <div class="recent_item_footer d-flex flex-row align-items-center justify-content-start">
+                                            <div><div class="recent_icon"><img src="~/Assets/images/icon_1.png" alt=""></div><span>@item.FloorCount .Kat</span></div>
+                                            <div><div class="recent_icon"><img src="~/Assets/images/icon_2.png" alt=""></div><span>@item.RoomCount + @item.SaloonCount</span></div>
+                                            <div><div class="recent_icon"><img src="~/Assets/images/icon_3.png" alt=""></div><span>@item.AreaBrüt m²</span></div>
+                                        </div>
+                                    </div>
+                                    @if (item.Status == Entity.Status.Current)
+                                    {
+                                        <div class="tag_featured property_tag"><a href="#">Satışta</a></div>
+                                    }
+                                    else
+                                    {
+                                        <div class="tag_featured property_tag"><a href="#">Satıldı</a></div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="button recent_button"><a href="/Home/RealEstates">Tümünü Gör</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="cities">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title">
+                    Ekibimiz
+                </div>
+                <div class="section_subtitle">Xtanbul Plus olarak tüm ekibimiz ile yanınızdayız.</div>
+            </div>
+        </div>
+        <div class="row recent_row">
+            <div class="col">
+                <div class="row" style=" justify-content: center; ">
+                    @foreach (var item in teams)
+                    {
+
+                        <div class="col-lg-4 col-md-6 ">
+                            <div class="realtor_outer">
+                                <div class="realtor">
+                                    <div class="realtor_image">
+                                        <figcaption style=" position: absolute; bottom: 10px; left: 10px; right: 10px; display: -webkit-box; display: -moz-box; display: -webkit-flex; display: -ms-flexbox; display: box; display: flex; -webkit-box-pack: end; -moz-box-pack: end; -o-box-pack: end; -ms-flex-pack: end; -webkit-justify-content: flex-end; justify-content: flex-end;">
+                                            <a href="tel:+905055334013" class="phone pt-1 pb-1 pr-2" style=" background: #1f2337; margin-right: auto; color: #fff; text-align: center; ">
+                                                <i class="fa fa-phone" style="width: 30px; position: relative; color: #c7a86e;"></i>
+                                                <span>@item.PhoneNumber</span>
+                                            </a>
+                                        </figcaption>
+                                        <img src="@item.Image" alt="" style=" width: 100%; ">
+                                    </div>
+                                    <div class="realtor_body">
+                                        <div class="realtor_title">@item.FirstName.ToUpper() @item.LastName.ToUpper()</div>
+                                        <div class="realtor_subtitle">Danışman</div>
+                                    </div>
+                                </div>
+                                <div class="realtor_link_background_container">
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+                <div class="button recent_button"><a href="/Home/Teams">Tümünü Gör</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="newsletter">
+    <div class="parallax_background parallax-window" data-parallax="scroll" data-image-src="~/Assets/images/newsletter.jpg" data-speed="0.8"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="newsletter_content d-flex flex-lg-row flex-column align-items-start justify-content-start">
+                    <div class="newsletter_title_container">
+                        <div class="newsletter_title">Alıyor ya da Satıyor musun?</div>
+                        <div class="newsletter_subtitle">Emlak ile ilgini hangi konuda olursa olsun buradayız.</div>
+                    </div>
+                    <div class="newsletter_form_container">
+                        <form action="#" class="newsletter_form">
+                            <input type="email" class="newsletter_input" placeholder="Email Adresiniz" required="required">
+                            <button class="newsletter_button">Abone Ol</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

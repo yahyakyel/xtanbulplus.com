@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<!--
+Author: Keenthemes
+Product Name: Metronic - Bootstrap 5 HTML, VueJS, React, Angular & Laravel Admin Dashboard Theme
+Purchase: https://1.envato.market/EA4JP
+Website: http://www.keenthemes.com
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
+-->
+<html lang="tr">
+<!--begin::Head-->
+<head>
+    <base href="../../../">
+    <title>Xtanbul Plus - Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="~/assets/media/logos/site_logo.png" />
+    <!--begin::Fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+    <!--end::Fonts-->
+    <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+    <!--end::Global Stylesheets Bundle-->
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body id="kt_body" class="bg--primary">
+    <!--begin::Main-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Authentication - Sign-in -->
+        <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed bg-black" style="background-image: url(assets/media/illustrations/sketchy-1/14.png">
+            <!--begin::Content-->
+            <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
+                <!--begin::Logo-->
+                <a class="mb-12">
+                    <img alt="Logo" src="~/assets/media/logos/logo.png" class="h-50px"/>
+                </a>
+                <!--end::Logo-->
+                <!--begin::Wrapper-->
+                @RenderBody()
+                <!--end::Wrapper-->
+            </div>
+            <!--end::Content-->
+            <!--begin::Footer-->
+            <!--end::Footer-->
+        </div>
+        <!--end::Authentication - Sign-in-->
+    </div>
+    <!--end::Main-->
+    <script>var hostUrl = "assets/";</script>
+    <!--begin::Javascript-->
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script src="assets/plugins/global/plugins.bundle.js"></script>
+    <script src="assets/js/scripts.bundle.js"></script>
+    <!--end::Global Javascript Bundle-->
+    <!--begin::Page Custom Javascript(used by this page)-->
+    <script src="assets/js/custom/authentication/sign-in/general.js"></script>
+    <script src="~/assets/vendors/general/jquery-form/dist/jquery.form.min.js" type="text/javascript"></script>
+    <script src="~/assets/vendors/general/jquery-validation/dist/jquery.validate.js" type="text/javascript"></script>
+    <!--end::Page Custom Javascript-->
+    <!--end::Javascript-->
+</body>
+<!--end::Body-->
+</html>
